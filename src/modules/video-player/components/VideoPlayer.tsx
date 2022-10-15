@@ -12,6 +12,7 @@ import { PlayerLoader } from "./PlayerLoader";
 
 interface PlayerProps {
   autoStart: boolean;
+  videoId: string;
   children(props: InjectedPlayerProps): React.ReactNode;
   mainControl(data: InjectedControlProps): React.ReactNode;
   bottomControl(data: InjectedControlProps): React.ReactNode;
@@ -26,6 +27,7 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
   const playerRef = useRef<Video>(null);
   const controlsHider = useRef(0);
   const controlsFadeValue = useRef(new Animated.Value(1)).current;
+  const [stream, setStream] = useState({});
   const {
     videoLoading,
     videoPaused,
@@ -37,7 +39,15 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
   const [showVideoControls, setShowVideoControls] = useState(false);
   const [playCursorTime, setPlayCursorTime] = useState(0);
   const [videoTotalTime, setVideoTotalTime] = useState(0);
-
+  useEffect(() => {
+    async function fetchData() {
+      await fetch(`https://yt2html5.com?id=${props.videoId}`)
+        .then((response) => response.json())
+        .then((res) => setStream(res))
+        .catch((error) => console.log(error));
+    }
+    fetchData();
+  }, [props.videoId]);
   const toggleControls = () => setShowVideoControls((prev) => !prev);
   const setCursorPosition = (to: number) => {
     playerRef.current?.seek(to);
@@ -138,12 +148,14 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
             })}
           </View>
         </Animated.View>
+
         {props.children({
           videoPaused,
           playerRef,
           onLoad,
           onProgress,
           onEnd,
+          stream,
         })}
       </View>
     </TouchableWithoutFeedback>

@@ -1,18 +1,18 @@
 {
-  "name": "react-native-true-sight",
-  "description": "A cross-platform video player with customizable controls for React Native.",
-  "version": "2.0.0",
+  "name": "react_native_youtube_streamer",
+  "description": "A cross-platform Youtube video player with customizable controls for React Native.",
+  "version": "0.0.1",
   "license": "MIT",
   "author": {
-    "name": "Andréas HANSS",
-    "url": "https://www.linkedin.com/in/andreas-hanss/"
+    "name": "Guruvignesh",
+    "url": "https://www.linkedin.com/in/guruvignesh-m-280a64192/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ScreamZ/react-native-true-sight.git"
+    "url": "https://github.com/staticGuru/react_native_youtube_streamer.git"
   },
   "bugs": {
-    "url": "https://github.com/ScreamZ/react-native-true-sight/issues"
+    "url": "https://github.com/staticGuru/react_native_youtube_streamer/issues"
   },
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -46,6 +46,11 @@
     "video",
     "video-player",
     "customizable",
-    "cross-platform"
+    "cross-platform",
+    "custom-youtube-player",
+    "youtube-player",
+    "youtube-iframe",
+    "youtube",
+    "youtube UI removal support"
   ]
 }

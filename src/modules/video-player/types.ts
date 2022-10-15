@@ -16,4 +16,5 @@ export interface InjectedPlayerProps {
   onLoad: (data: OnLoadData) => void;
   onProgress: (data: OnProgressData) => void;
   onEnd: () => void;
+  stream: any;
 }
