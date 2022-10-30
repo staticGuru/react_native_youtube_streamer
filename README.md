@@ -1,14 +1,19 @@
 <h1 align="center">
   React Native Youtube Streamer
 </h1>
-<!-- <p align="center">
-  <img src="./assets/screen-ios.png" alt="" width=300>
-</p> -->
+
 <h4 align="center">A cross-platform Youtube video player with customizable controls.</h4>
 
 <br>
 
 This library provide a fully customisable Youtube video player that work both on Android and iOS. It also come with common use case documentation of things that you would like to implements.
+
+<p align="center">
+  <img src="./assets/youtube.png" alt="" width=400>
+</p>
+<p align="center">
+  <img src="./assets/videoImage.png" alt="" width=400>
+</p>
 
 By default there are two controls slots that are displayed respectively on different part of the parent container and you can use default components provided by this library:
 
@@ -37,6 +42,8 @@ VideoPlayer ship around any video component, but fits well with react-video. In 
 - **VideoId**. Contain the valid Youtube video Id.
 
 For advanced configuration, such as infinite loop, check the rest of the documentation and custom controls bar.
+**youtubeCustomUrl** - Youtube video URLs extracted from YouTube
+**stream** - Get all the details about YouTube videos
 
 ```jsx
 import React, { Component } from "react";
@@ -49,29 +56,43 @@ import {
   videoId,
 } from "react_native_youtube_streamer";
 
-export default class HomeScreen extends Component {
+export default class App extends Component {
   render() {
     return (
       <VideoPlayer
         autoStart={false}
         mainControl={(args) => <DefaultMainControl {...args} />}
         bottomControl={(args) => <DefaultBottomControlsBar {...args} />}
-        videoId="t0Q2otsqC4I"
+        videoId="tsPSBLX1GPg" //<-- youtube-video-id -->
       >
-        {(args) => (
-          <Video
-            ref={args.playerRef}
-            source={{ uri: arg.stream.url }}
-            paused={args.videoPaused}
-            onLoad={args.onLoad}
-            onProgress={args.onProgress}
-            onEnd={args.onEnd}
-          />
-        )}
+        {(args) =>
+          args.youtubeCustomUrl && (
+            <Video
+              ref={args.playerRef}
+              source={{
+                uri: args.youtubeCustomUrl,
+              }}
+              style={styles.backgroundVideo}
+              resizeMode="cover"
+              paused={args.videoPaused}
+              onLoad={args.onLoad}
+              onProgress={args.onProgress}
+              onEnd={args.onEnd}
+            />
+          )
+        }
       </VideoPlayer>
     );
   }
 }
+var styles = StyleSheet.create({
+  backgroundVideo: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    backgroundColor: "black",
+  },
+});
 ```
-
-# react_native_youtube_streamer

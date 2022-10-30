@@ -28,6 +28,7 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
   const controlsHider = useRef(0);
   const controlsFadeValue = useRef(new Animated.Value(1)).current;
   const [stream, setStream] = useState({});
+  const [youtubeCustomUrl, setyoutubeCustomUrl] = useState();
   const {
     videoLoading,
     videoPaused,
@@ -42,12 +43,22 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
   useEffect(() => {
     async function fetchData() {
       await fetch(`https://yt2html5.com?id=${props.videoId}`)
-        .then((response) => response.json())
-        .then((res) => setStream(res))
+        .then((response: { json: () => any }) => response.json())
+        .then((res: any) => {
+          setStream(res);
+          setyoutubeCustomUrl(
+            res?.data?.formats?.filter(
+              (video: { mimeType: string; hasAudio: any; hasVideo: any }) =>
+                video?.mimeType?.startsWith("video/mp4") &&
+                video.hasAudio &&
+                video.hasVideo
+            )[0]?.url
+          );
+        })
         .catch((error) => console.log(error));
     }
     fetchData();
-  }, [props.videoId]);
+  }, []);
   const toggleControls = () => setShowVideoControls((prev) => !prev);
   const setCursorPosition = (to: number) => {
     playerRef.current?.seek(to);
@@ -81,6 +92,7 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
 
   useEffect(() => {
     // When player is shown, hide controls
+    console.log("calleingTogglecontrols");
     toggleControls();
   }, []);
 
@@ -156,6 +168,7 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
           onProgress,
           onEnd,
           stream,
+          youtubeCustomUrl,
         })}
       </View>
     </TouchableWithoutFeedback>

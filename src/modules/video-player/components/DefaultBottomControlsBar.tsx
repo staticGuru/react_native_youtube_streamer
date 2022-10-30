@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import Slider from "@react-native-community/slider";
-import { secondsToMS } from "../logic/utils";
-import { InjectedControlProps } from "../types";
+import React, {useRef} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import Slider from '@react-native-community/slider';
+import {secondsToMS} from '../logic/utils';
+import {InjectedControlProps} from '../types';
 
 interface BottomControlProps extends InjectedControlProps {
   barColor?: string;
@@ -10,9 +10,7 @@ interface BottomControlProps extends InjectedControlProps {
   navigationDisabled?: boolean;
 }
 
-export const DefaultBottomControlsBar: React.FC<BottomControlProps> = (
-  props
-) => {
+export const DefaultBottomControlsBar: React.FC<BottomControlProps> = props => {
   const wasPausedBeforeSliding = useRef(props.videoPaused);
 
   return (
@@ -21,7 +19,7 @@ export const DefaultBottomControlsBar: React.FC<BottomControlProps> = (
         {secondsToMS(props.playCursorTime)}
       </Text>
       <Slider
-        pointerEvents={props.navigationDisabled ? "none" : undefined}
+        pointerEvents={props.navigationDisabled ? 'none' : undefined}
         style={styles.loadingBar}
         maximumValue={props.videoTotalTime}
         minimumTrackTintColor={props.barColor}
@@ -31,7 +29,7 @@ export const DefaultBottomControlsBar: React.FC<BottomControlProps> = (
           wasPausedBeforeSliding.current = props.videoPaused; // To know if we need to play after sliding.
           props.setPaused();
         }}
-        onSlidingComplete={(val) => {
+        onSlidingComplete={(val: number) => {
           props.setPosition(Math.round(val));
 
           // Mark playing again if not paused before sliding
@@ -47,15 +45,15 @@ export const DefaultBottomControlsBar: React.FC<BottomControlProps> = (
 
 const styles = StyleSheet.create({
   barWrapper: {
-    flexDirection: "row",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     height: 60,
     paddingHorizontal: 20,
-    justifyContent: "space-between",
-    alignItems: "center",
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   currentTime: {
-    color: "white",
+    color: 'white',
     width: 40,
   },
   loadingBar: {
@@ -63,7 +61,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   totalTime: {
-    color: "white",
+    color: 'white',
     width: 40,
   },
 });

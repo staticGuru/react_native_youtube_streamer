@@ -1,4 +1,4 @@
-import Video, { OnLoadData, OnProgressData } from "react-native-video";
+import Video, {OnLoadData, OnProgressData} from 'react-native-video';
 
 export interface InjectedControlProps {
   playCursorTime: number;
@@ -17,4 +17,5 @@ export interface InjectedPlayerProps {
   onProgress: (data: OnProgressData) => void;
   onEnd: () => void;
   stream: any;
+  youtubeCustomUrl: any;
 }
