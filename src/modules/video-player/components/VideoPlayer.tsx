@@ -9,6 +9,7 @@ import Video from "react-native-video";
 import { useVideoState } from "../hooks/useVideoState";
 import { InjectedControlProps, InjectedPlayerProps } from "../types";
 import { PlayerLoader } from "./PlayerLoader";
+import { CUSTOMYOUTUBEURL } from "../../../util/constants";
 
 interface PlayerProps {
   autoStart: boolean;
@@ -42,7 +43,7 @@ export const VideoPlayer: React.FC<PlayerProps> = (props) => {
   const [videoTotalTime, setVideoTotalTime] = useState(0);
   useEffect(() => {
     async function fetchData() {
-      await fetch(`https://yt2html5.com?id=${props.videoId}`)
+      await fetch(`${CUSTOMYOUTUBEURL}?id=${props.videoId}`)
         .then((response: { json: () => any }) => response.json())
         .then((res: any) => {
           setStream(res);

@@ -1,7 +1,7 @@
 {
   "name": "react_native_youtube_streamer",
   "description": "A cross-platform Youtube video player with customizable controls for React Native.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "author": {
     "name": "Guruvignesh",
