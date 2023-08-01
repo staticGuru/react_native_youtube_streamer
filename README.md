@@ -1,12 +1,12 @@
 <h1 align="center">
-  React Native Youtube Streamer
+  React Native YouTube Streamer
 </h1>
 
-<h4 align="center">A cross-platform Youtube video player with customizable controls.</h4>
+<h4 align="center">A cross-platform YouTube video player with customizable controls.</h4>
 
 <br>
 
-This library provide a fully customisable Youtube video player that work both on Android and iOS. It also come with common use case documentation of things that you would like to implements.
+This library provides a fully customisable YouTube video player that works on Android and iOS. It also comes with a common use-case documentation of things that you would like to implement.
 
 <p align="center">
   <img src="./assets/youtube.png" alt="" width=400>
@@ -15,14 +15,14 @@ This library provide a fully customisable Youtube video player that work both on
   <img src="./assets/videoImage.png" alt="" width=400>
 </p>
 
-By default there are two controls slots that are displayed respectively on different part of the parent container and you can use default components provided by this library:
+By default, there are two controls slots that are displayed respectively on different parts of the parent container, and you can use default components provided by this library:
 
-- **Middle**. Contain by default a grid display two buttons:
-  - One with play / pause alternating.
+- **Middle**. Contains by default a grid displaying two buttons:
+  - One with play/pause alternating.
   - Another that will restart the video.
-- **Bottom**. Contain the video current time, a progress bar and the total duration.
-- **Loader**. There is also a loader that will trigger while video is charging (network issues, bootstraping, ...).
-- **VideoId**. Contain the valid Youtube video Id.
+- **Bottom**. Contains the video's current time, a progress bar, and the total duration.
+- **Loader**. There is also a loader that will trigger while the video is buffering (network issues, bootstrap, ...).
+- **VideoId**. Contains the valid YouTube video id.
 
 ## Documentation
 
@@ -34,11 +34,11 @@ By default there are two controls slots that are displayed respectively on diffe
 
 This is simple as that.
 
-VideoPlayer ship around any video component, but fits well with react-video. In v2 you've total control on the video component.
+VideoPlayer ship around any video component but fits well with react-video. In v2, you've total control on the video component.
 
 - **autoStart** - Whether or not the video should start when rendered (Default to true).
-- **mainControl** - The component used to render the main control bar, you can use the default one provided by this lib or your own.
-- **bottomControl** - The component used to render the bottom control bar, you can use the default one provided by this lib or your own.
+- **mainControl** - The component used to render the main control bar. You can use the default one provided by this lib or your own.
+- **bottomControl** - The component used to render the bottom control bar. You can use the default one provided by this lib or your own.
 - **VideoId**. Contain the valid Youtube video Id.
 
 For advanced configuration, such as infinite loop, check the rest of the documentation and custom controls bar.
